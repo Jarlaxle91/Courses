@@ -14,4 +14,5 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
 .idea/codeStyles/codeStyleConfig.xml
+/sandbox/build/
 /sandbox/out/
