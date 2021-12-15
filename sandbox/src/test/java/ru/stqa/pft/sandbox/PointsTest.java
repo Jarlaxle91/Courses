@@ -4,24 +4,18 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PointsTest {
+
   @Test
   public void testPoint() {
-    Point p = new Point(3, 7, 1,11);
-    Assert.assertEquals(p.distance(), 4.47213595499958);
+    Point p1 = new Point(6, 9);
+    Point p2 = new Point(13, 4);
+    Assert.assertEquals(MyFirstProgram.distance(p1, p2), 8.602325267042627); //Позитивный тест
   }
 
   @Test
-  public void testCoordinates() {
-    Point p = new Point(3,7,1,11);
-    double x1 = p.x1;
-    double x2 = p.x2;
-    double y1 = p.y1;
-    double y2 = p.y2;
-
-    Assert.assertEquals(p.x1, 3);
-    Assert.assertEquals(p.x2, 1);
-    Assert.assertEquals(p.y1, 7);
-    Assert.assertEquals(p.y2, 11);
+  public void anotherTestPoint() {
+    Point p1 = new Point(6, 9);
+    Point p2 = new Point(13, 4);
+    Assert.assertEquals(MyFirstProgram.distance(p1, p2), 5); //Негативный тест
   }
-
 }
