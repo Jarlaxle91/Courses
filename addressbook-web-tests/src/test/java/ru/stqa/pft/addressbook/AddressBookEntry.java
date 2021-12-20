@@ -32,8 +32,8 @@ public class AddressBookEntry {
   }
 
   @Test
-  public void testAddressBookEntry() throws Exception {
-    addNewEntry();
+  public void testAddressBookContact() throws Exception {
+    addNewContact();
     fillEntryForm(new ContactData("Test first name", "Test middle name",
             "Test last name", "Test nickname", "Test title",
             "Test company", "Test address", "Test home",
@@ -122,7 +122,7 @@ public class AddressBookEntry {
     new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
   }
 
-  private void addNewEntry() {
+  private void addNewContact() {
     wd.findElement(By.linkText("add new")).click();
   }
 

@@ -15,4 +15,6 @@ gradle-app.setting
 .idea/workspace.xml
 /sandbox/build/
 /sandbox/out/
+/addressbook/build/
+/addressbook/out/
 .idea/codeStyles/codeStyleConfig.xml

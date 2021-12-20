@@ -24,7 +24,11 @@ public class ContactData {
   private final String anniversaryYear;
   private final String group;
 
-  public ContactData(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String firstEmail, String secondEmail, String thirdEmail, String homepage, String dayOfBirth, String monthOfBirth, String yearOfBirth, String anniversaryDay, String anniversaryMonth, String anniversaryYear, String group) {
+  public ContactData(String firstName, String middleName, String lastName, String nickname, String title,
+                     String company, String address, String home, String mobile, String work, String fax,
+                     String firstEmail, String secondEmail, String thirdEmail, String homepage, String dayOfBirth,
+                     String monthOfBirth, String yearOfBirth, String anniversaryDay, String anniversaryMonth,
+                     String anniversaryYear, String group) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
