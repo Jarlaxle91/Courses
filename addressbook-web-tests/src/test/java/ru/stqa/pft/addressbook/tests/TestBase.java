@@ -9,13 +9,9 @@ public class TestBase {
   protected final ApplicationManager app = new ApplicationManager();
 
   @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
-    app.init();
-  }
+  public void setUp() throws Exception { app.init(); }
 
   @AfterMethod(alwaysRun = true)
-  public void tearDown() throws Exception {
-    app.stop();
-  }
+  public void tearDown() throws Exception { app.stop(); }
 
 }

@@ -7,14 +7,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 
-public class ApplicationManager {
-  WebDriver wd;
+ public class ApplicationManager {
+   WebDriver wd;
 
-  private SessionHelper sessionHelper;
-  private NavigationHelper navigationHelper;
-  private GroupHelper groupHelper;
+   private SessionHelper sessionHelper;
+   private NavigationHelper navigationHelper;
+   private GroupHelper groupHelper;
 
-  public void init() {
+   public void init() {
     System.setProperty("webdriver.chrome.driver", "c:/windows/system32/chromedriver.exe");
     wd = new ChromeDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -29,7 +29,7 @@ public class ApplicationManager {
     wd.findElement(By.linkText("Logout")).click();
   }
 
-  public void stop() {
+   public void stop() {
     wd.quit();
   }
 
@@ -37,7 +37,7 @@ public class ApplicationManager {
     return groupHelper;
   }
 
-  public NavigationHelper getNavigationHelper() {
-    return navigationHelper;
-  }
-}
+   public NavigationHelper getNavigationHelper() {
+     return navigationHelper;
+   }
+ }
