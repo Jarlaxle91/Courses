@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactHelper extends GroupHelper {
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -47,6 +47,10 @@ public class ContactHelper extends GroupHelper {
     }
   }
 
+  private void returnToContactPage() {
+    click(By.linkText("home"));
+  }
+
   private void selectElementDropDownList(String locator, String selectedValue) {
     wd.findElement(By.name(locator)).click();
     new Select(wd.findElement(By.name(locator))).selectByVisibleText(selectedValue);
@@ -74,5 +78,16 @@ public class ContactHelper extends GroupHelper {
 
   public void submitDeletionContact() {
     clickInActionConfirmationWindow(By.xpath("//input[@value='Delete']"));
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+  public void createContact(ContactData contact, boolean creation) {
+    addNewContact();
+    fillEntryForm(contact, creation);
+    submitContactCreation();
+    returnToContactPage();
   }
 }
