@@ -1,11 +1,13 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactHelper extends GroupHelper {
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -15,7 +17,7 @@ public class ContactHelper extends GroupHelper {
     wd.findElement(By.name("submit")).click();
   }
 
-  public void fillEntryForm(ContactData contactData) {
+  public void fillEntryForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("middlename"), contactData.getMiddleName());
     type(By.name("lastname"), contactData.getLastName());
@@ -37,6 +39,16 @@ public class ContactHelper extends GroupHelper {
     selectElementDropDownList("aday", contactData.getAnniversaryDay());
     selectElementDropDownList("amonth", contactData.getAnniversaryMonth());
     type(By.name("ayear"), contactData.getAnniversaryYear());
+
+    if (creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
+  }
+
+  private void returnToContactPage() {
+    click(By.linkText("home"));
   }
 
   private void selectElementDropDownList(String locator, String selectedValue) {
@@ -66,5 +78,16 @@ public class ContactHelper extends GroupHelper {
 
   public void submitDeletionContact() {
     clickInActionConfirmationWindow(By.xpath("//input[@value='Delete']"));
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+  public void createContact(ContactData contact, boolean creation) {
+    addNewContact();
+    fillEntryForm(contact, creation);
+    submitContactCreation();
+    returnToContactPage();
   }
 }
