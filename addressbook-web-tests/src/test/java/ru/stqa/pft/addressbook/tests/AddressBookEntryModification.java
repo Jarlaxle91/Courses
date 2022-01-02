@@ -16,7 +16,7 @@ public class AddressBookEntryModification extends TestBase {
             "01234567890", "Test work edited", "Test fax edited", "editedtest1@test.com",
             "editedtest2@test.com", "editedtest3@test.com", "www.editedhomepage.com",
             "10", "July", "1994", "20",
-            "March", "2010", "test1"));
+            "March", "2010", null), false);
     app.getContactHelper().submitContactModification();
     app.getNavigationHelper().gotoContactPage();
     app.logout();
