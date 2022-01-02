@@ -24,6 +24,7 @@ public class ApplicationManager {
   }
 
   public void init() {
+    System.setProperty("webdriver.chrome.driver", "c:/windows/system32/chromedriver.exe");
     if (browser.equals(BrowserType.FIREFOX)) {
       wd = new FirefoxDriver();
     } else if (browser.equals(BrowserType.CHROME)) {
@@ -31,8 +32,6 @@ public class ApplicationManager {
     } else if (browser.equals(BrowserType.IE)) {
       wd = new InternetExplorerDriver();
     }
-    System.setProperty("webdriver.chrome.driver", "c:/windows/system32/chromedriver.exe");
-    wd = new ChromeDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(wd);
