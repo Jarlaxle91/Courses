@@ -18,6 +18,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillEntryForm(ContactData contactData, boolean creation) {
+    checkExistanceAndSelectGroup(contactData.getGroup());
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("middlename"), contactData.getMiddleName());
     type(By.name("lastname"), contactData.getLastName());
@@ -44,6 +45,31 @@ public class ContactHelper extends HelperBase {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
+  }
+
+  private void checkExistanceAndSelectGroup(String groupName) {
+    wd.findElement(By.name("new_group")).click();
+
+    if (isElementPresent(By.xpath("//select[@name='new_group']//option[text()='" + groupName + "']"))) {
+      wd.findElement(By.name("new_group")).click();
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupName);
+    } else {
+      wd.findElement(By.name("theform")).click();
+      wd.findElement(By.linkText("groups")).click();
+      wd.findElement(By.name("new")).click();
+      wd.findElement(By.name("group_name")).click();
+      wd.findElement(By.name("group_name")).clear();
+      wd.findElement(By.name("group_name")).sendKeys(groupName);
+      wd.findElement(By.name("group_header")).click();
+      wd.findElement(By.name("group_header")).clear();
+      wd.findElement(By.name("group_header")).sendKeys("test2");
+      wd.findElement(By.name("group_footer")).click();
+      wd.findElement(By.name("group_footer")).clear();
+      wd.findElement(By.name("group_footer")).sendKeys("test3");
+      wd.findElement(By.xpath("//form[@action='/addressbook/group.php']")).click();
+      wd.findElement(By.name("submit")).click();
+      wd.findElement(By.linkText("add new")).click();
     }
   }
 
@@ -84,9 +110,9 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public void createContact(ContactData contact, boolean creation) {
+  public void createContact(ContactData contact) {
     addNewContact();
-    fillEntryForm(contact, creation);
+    fillEntryForm(contact, true);
     submitContactCreation();
     returnToContactPage();
   }
