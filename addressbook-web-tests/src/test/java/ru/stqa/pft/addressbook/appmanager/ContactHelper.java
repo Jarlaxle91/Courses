@@ -18,7 +18,6 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillEntryForm(ContactData contactData, boolean creation) {
-    checkExistanceAndSelectGroup(contactData.getGroup());
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("middlename"), contactData.getMiddleName());
     type(By.name("lastname"), contactData.getLastName());
@@ -42,6 +41,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("ayear"), contactData.getAnniversaryYear());
 
     if (creation) {
+      checkExistanceAndSelectGroup(contactData.getGroup());
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
