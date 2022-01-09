@@ -3,9 +3,14 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -18,6 +23,12 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillEntryForm(ContactData contactData, boolean creation) {
+    if (creation) {
+      checkExistanceAndSelectGroup(contactData.getGroup());
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("middlename"), contactData.getMiddleName());
     type(By.name("lastname"), contactData.getLastName());
@@ -39,13 +50,6 @@ public class ContactHelper extends HelperBase {
     selectElementDropDownList("aday", contactData.getAnniversaryDay());
     selectElementDropDownList("amonth", contactData.getAnniversaryMonth());
     type(By.name("ayear"), contactData.getAnniversaryYear());
-
-    if (creation) {
-      checkExistanceAndSelectGroup(contactData.getGroup());
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
   }
 
   private void checkExistanceAndSelectGroup(String groupName) {
@@ -86,12 +90,12 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-  public void initContactModification() {
-    click(By.xpath("//img[@alt='Edit']"));
+  public void initContactModification(int index) {
+    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   }
 
   public void submitContactModification() {
@@ -115,5 +119,27 @@ public class ContactHelper extends HelperBase {
     fillEntryForm(contact, true);
     submitContactCreation();
     returnToContactPage();
+  }
+
+  public int getContactCount() {
+    return wd.findElements(By.xpath("//tr[@name='entry']")).size();
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> records = wd.findElements(By.xpath("//tr[@name='entry']"));
+
+    for (WebElement element : records) {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String firstName = cells.get(2).getText();
+      String lastName = cells.get(1).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+        ContactData contact = new ContactData(id, firstName, null, lastName, null, null,
+                null, null, null, null, null,null,null,
+                null, null,null,null,null,null,
+                null, null, null, null);
+        contacts.add(contact);
+      }
+    return contacts;
   }
 }
