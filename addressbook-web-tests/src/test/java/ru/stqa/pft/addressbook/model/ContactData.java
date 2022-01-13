@@ -9,13 +9,15 @@ public class ContactData {
   private String title;
   private String company;
   private String address;
-  private String home;
-  private String mobile;
-  private String work;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
+  private String allPhones;
   private String fax;
   private String firstEmail;
   private String secondEmail;
   private String thirdEmail;
+  private String allEmails;
   private String homepage;
   private String dayOfBirth;
   private String monthOfBirth;
@@ -44,54 +46,24 @@ public class ContactData {
   public String getCompany() {
     return company;
   }
-  public String getAddress() {
-    return address;
-  }
-  public String getHome() {
-    return home;
-  }
-  public String getMobile() {
-    return mobile;
-  }
-  public String getWork() {
-    return work;
-  }
-  public String getFax() {
-    return fax;
-  }
-  public String getFirstEmail() {
-    return firstEmail;
-  }
-  public String getSecondEmail() {
-    return secondEmail;
-  }
-  public String getThirdEmail() {
-    return thirdEmail;
-  }
-  public String getHomepage() {
-    return homepage;
-  }
-  public String getDayOfBirth() {
-    return dayOfBirth;
-  }
-  public String getMonthOfBirth() {
-    return monthOfBirth;
-  }
-  public String getYearOfBirth() {
-    return yearOfBirth;
-  }
-  public String getAnniversaryDay() {
-    return anniversaryDay;
-  }
-  public String getAnniversaryMonth() {
-    return anniversaryMonth;
-  }
-  public String getAnniversaryYear() {
-    return anniversaryYear;
-  }
-  public String getGroup() {
-    return group;
-  }
+  public String getAddress() { return address; }
+  public String getHomePhone() { return homePhone; }
+  public String getMobilePhone() { return mobilePhone; }
+  public String getWorkPhone() { return workPhone; }
+  public String getAllPhones() { return allPhones; }
+  public String getFax() { return fax; }
+  public String getFirstEmail() { return firstEmail; }
+  public String getSecondEmail() { return secondEmail; }
+  public String getThirdEmail() { return thirdEmail; }
+  public String getAllEmails() { return allEmails; }
+  public String getHomepage() { return homepage; }
+  public String getDayOfBirth() { return dayOfBirth; }
+  public String getMonthOfBirth() { return monthOfBirth; }
+  public String getYearOfBirth() { return yearOfBirth; }
+  public String getAnniversaryDay() { return anniversaryDay; }
+  public String getAnniversaryMonth() { return anniversaryMonth; }
+  public String getAnniversaryYear() { return anniversaryYear; }
+  public String getGroup() { return group; }
 
   public ContactData withId(int id) { this.id = id;  return this; }
   public ContactData withFirstName(String firstName) { this.firstName = firstName; return this; }
@@ -101,13 +73,16 @@ public class ContactData {
   public ContactData withTitle(String title) { this.title = title; return this; }
   public ContactData withCompany(String company) { this.company = company; return this; }
   public ContactData withAddress(String address) { this.address = address; return this; }
-  public ContactData withHome(String home) { this.home = home; return this; }
-  public ContactData withMobile(String mobile) { this.mobile = mobile; return this; }
-  public ContactData withWork(String work) { this.work = work; return this; }
+  public ContactData withAllAddresses(String allAddresses) { this.address = allAddresses; return this; }
+  public ContactData withHomePhone(String home) { this.homePhone = home; return this; }
+  public ContactData withMobilePhone(String mobile) { this.mobilePhone = mobile; return this; }
+  public ContactData withWorkPhone(String work) { this.workPhone = work; return this; }
+  public ContactData withAllPhones(String allPhones) { this.allPhones = allPhones; return this; }
   public ContactData withFax(String fax) { this.fax = fax; return this; }
   public ContactData withFirstEmail(String firstEmail) { this.firstEmail = firstEmail; return this; }
   public ContactData withSecondEmail(String secondEmail) { this.secondEmail = secondEmail; return this; }
   public ContactData withThirdEmail(String thirdEmail) { this.thirdEmail = thirdEmail; return this; }
+  public ContactData withAllEmails(String allEmails) { this.allEmails = allEmails; return this; }
   public ContactData withHomepage(String homepage) { this.homepage = homepage; return this; }
   public ContactData withDayOfBirth(String dayOfBirth) { this.dayOfBirth = dayOfBirth; return this; }
   public ContactData withMonthOfBirth(String monthOfBirth) { this.monthOfBirth = monthOfBirth; return this; }
