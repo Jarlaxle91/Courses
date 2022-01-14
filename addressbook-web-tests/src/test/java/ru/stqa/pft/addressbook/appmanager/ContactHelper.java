@@ -48,6 +48,7 @@ public class ContactHelper extends HelperBase {
     selectElementDropDownList("aday", contactData.getAnniversaryDay());
     selectElementDropDownList("amonth", contactData.getAnniversaryMonth());
     type(By.name("ayear"), contactData.getAnniversaryYear());
+    type(By.name("phone2"), contactData.getSecondPhone());
   }
 
   private void checkExistanceAndSelectGroup(String groupName) {
@@ -168,6 +169,7 @@ public class ContactHelper extends HelperBase {
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String secondPhone = wd.findElement(By.name("phone2")).getAttribute("value");
     String address = wd.findElement(By.name("address")).getAttribute("value");
     String firstEmail = wd.findElement(By.name("email")).getAttribute("value");
     String secondEmail = wd.findElement(By.name("email2")).getAttribute("value");
@@ -176,7 +178,8 @@ public class ContactHelper extends HelperBase {
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname)
             .withAddress(address).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
-            .withFirstEmail(firstEmail).withSecondEmail(secondEmail).withThirdEmail(thirdEmail);
+            .withSecondPhone(secondPhone).withFirstEmail(firstEmail).withSecondEmail(secondEmail)
+            .withThirdEmail(thirdEmail);
   }
 
   private void initContactModificationById(int id) {

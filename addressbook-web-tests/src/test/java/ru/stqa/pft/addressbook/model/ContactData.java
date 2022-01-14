@@ -12,6 +12,7 @@ public class ContactData {
   private String homePhone;
   private String mobilePhone;
   private String workPhone;
+  private String secondPhone;
   private String allPhones;
   private String fax;
   private String firstEmail;
@@ -50,6 +51,7 @@ public class ContactData {
   public String getHomePhone() { return homePhone; }
   public String getMobilePhone() { return mobilePhone; }
   public String getWorkPhone() { return workPhone; }
+  public String getSecondPhone() { return secondPhone; }
   public String getAllPhones() { return allPhones; }
   public String getFax() { return fax; }
   public String getFirstEmail() { return firstEmail; }
@@ -77,6 +79,7 @@ public class ContactData {
   public ContactData withHomePhone(String home) { this.homePhone = home; return this; }
   public ContactData withMobilePhone(String mobile) { this.mobilePhone = mobile; return this; }
   public ContactData withWorkPhone(String work) { this.workPhone = work; return this; }
+  public ContactData withSecondPhone(String secondPhone) { this.secondPhone = secondPhone; return this; }
   public ContactData withAllPhones(String allPhones) { this.allPhones = allPhones; return this; }
   public ContactData withFax(String fax) { this.fax = fax; return this; }
   public ContactData withFirstEmail(String firstEmail) { this.firstEmail = firstEmail; return this; }
