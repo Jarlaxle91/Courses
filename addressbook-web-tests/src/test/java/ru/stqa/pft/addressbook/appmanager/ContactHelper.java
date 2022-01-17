@@ -49,6 +49,7 @@ public class ContactHelper extends HelperBase {
     selectElementDropDownList("amonth", contactData.getAnniversaryMonth());
     type(By.name("ayear"), contactData.getAnniversaryYear());
     type(By.name("phone2"), contactData.getSecondPhone());
+    attach(By.name("photo"), contactData.getPhoto());
   }
 
   private void checkExistanceAndSelectGroup(String groupName) {
@@ -85,9 +86,7 @@ public class ContactHelper extends HelperBase {
     new Select(wd.findElement(By.name(locator))).selectByVisibleText(selectedValue);
   }
 
-  public void addNewContact() {
-    click(By.linkText("add new"));
-  }
+  public void addNewContact() { click(By.linkText("add new")); }
 
   public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
@@ -116,6 +115,8 @@ public class ContactHelper extends HelperBase {
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
+
+  public int count() { return wd.findElements(By.name("selected[]")).size(); }
 
   public void create(ContactData contact) {
     addNewContact();
@@ -188,6 +189,4 @@ public class ContactHelper extends HelperBase {
     List<WebElement> cells = row.findElements(By.tagName("td"));
     cells.get(7).findElement(By.tagName("a")).click();
   }
-
-
 }
