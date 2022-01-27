@@ -13,7 +13,7 @@ public class ContactPhonesAndAddressesAndEmailsTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().contactPage();
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData().withFirstName("Test first name").withMiddleName("Test middle name")
               .withLastName("Test last name").withNickname("Test nickname").withTitle("Test title")
               .withCompany("Test company").withAddress("Test address").withHomePhone("+7(111)").withMobilePhone("")

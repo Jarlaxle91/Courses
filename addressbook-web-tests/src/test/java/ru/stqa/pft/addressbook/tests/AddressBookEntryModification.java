@@ -12,8 +12,8 @@ public class AddressBookEntryModification extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().contactPage();
-    if (app.contact().all().size() == 0) {
+    if(app.db().contacts().size() == 0) {
+      app.goTo().contactPage();
       app.contact().create(new ContactData().withFirstName("Test first name").withMiddleName("Test middle name")
               .withLastName("Test last name").withNickname("Test nickname").withTitle("Test title")
               .withCompany("Test company").withAddress("Test address").withHomePhone("Test home").withMobilePhone("1234567890")
@@ -26,7 +26,7 @@ public class AddressBookEntryModification extends TestBase {
 
   @Test
   public void testContactModification() {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().withId(modifiedContact.getId())
             .withFirstName("Test first name edited").withMiddleName("Test middle name edited")
@@ -40,7 +40,7 @@ public class AddressBookEntryModification extends TestBase {
 
     app.contact().modify(contact);
     assertThat(app.group().count(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.withoutAdded(modifiedContact).withAdded(contact)));
   }
 }

@@ -49,7 +49,6 @@ public class ContactHelper extends HelperBase {
     selectElementDropDownList("amonth", contactData.getAnniversaryMonth());
     type(By.name("ayear"), contactData.getAnniversaryYear());
     type(By.name("phone2"), contactData.getSecondPhone());
-    attach(By.name("photo"), contactData.getPhoto());
   }
 
   private void checkExistanceAndSelectGroup(String groupName) {
