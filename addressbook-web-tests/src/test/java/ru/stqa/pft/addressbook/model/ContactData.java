@@ -8,6 +8,8 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("group")
 @Entity
@@ -126,13 +128,14 @@ public class ContactData {
   @Column(name = "ayear")
   private String anniversaryYear;
 
-  @Expose
-  @Transient
-  private String group;
-
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
@@ -243,8 +246,8 @@ public class ContactData {
     return anniversaryYear;
   }
 
-  public String getGroup() {
-    return group;
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
   public ContactData withId(int id) {
@@ -377,11 +380,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
-
   @Override
   public String toString() {
     return "ContactData{" +
@@ -409,5 +407,10 @@ public class ContactData {
     result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
     return result;
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 }

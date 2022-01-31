@@ -61,7 +61,7 @@ public class ContactDataGenerator {
               .withHomePhone("test_home").withMobilePhone("123456789").withWorkPhone("123456789").withFax("123456789")
               .withFirstEmail("test1@test.com").withSecondEmail("test2@test.com").withThirdEmail("test3@test.com")
               .withHomepage("www.homepage.com").withDayOfBirth("1").withMonthOfBirth("January").withYearOfBirth("1990")
-              .withAnniversaryDay("2").withAnniversaryMonth("February").withAnniversaryYear("2001").withGroup("test1"));
+              .withAnniversaryDay("2").withAnniversaryMonth("February").withAnniversaryYear("2001"));
     }
     return contacts;
   }

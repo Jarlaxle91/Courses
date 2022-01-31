@@ -22,8 +22,10 @@ public class ContactHelper extends HelperBase {
 
   public void fillEntryForm(ContactData contactData, boolean creation) {
     if (creation) {
-      checkExistanceAndSelectGroup(contactData.getGroup());
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -137,6 +139,20 @@ public class ContactHelper extends HelperBase {
     deleteSelectedContact();
     submitDeletionContact();
     returnToContactPage();
+  }
+
+  public void attachContactToGroup(int id, String groupName) {
+    selectContactById(id);
+    wd.findElement(By.name("to_group")).click();
+    wd.findElement(By.xpath("//select[@name='to_group']//option[text()='"+groupName+"']")).click();
+    wd.findElement(By.name("add")).click();
+  }
+
+  public void deleteAttachedGroup(int id,String groupName) {
+    wd.findElement(By.xpath("//select[@name='group']")).click();
+    wd.findElement(By.xpath("//select[@name='group']//option[text()='"+groupName+"']")).click();
+    selectContactById(id);
+    wd.findElement(By.name("remove")).click();
   }
 
   public int getContactCount() {

@@ -20,7 +20,7 @@ public class ContactPhonesAndAddressesAndEmailsTests extends TestBase {
               .withWorkPhone("33-33").withSecondPhone("42-42").withFax("Test fax").withFirstEmail("test1@test.com")
               .withSecondEmail("test2@test.com").withThirdEmail("test 3 - () @test.com").withHomepage("www.homepage.com")
               .withDayOfBirth("1").withMonthOfBirth("January").withYearOfBirth("1990").withAnniversaryDay("2")
-              .withAnniversaryMonth("February").withAnniversaryYear("2001").withGroup("test1"));
+              .withAnniversaryMonth("February").withAnniversaryYear("2001"));
     }
   }
 

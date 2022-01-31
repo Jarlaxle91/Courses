@@ -69,6 +69,8 @@ public class ApplicationManager {
     return navigationHelper;
   }
 
+  public void goHomePage() { wd.findElement(By.id("logo")).click(); }
+
   public ContactHelper contact() {
     return contactHelper;
   }

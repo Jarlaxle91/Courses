@@ -6,6 +6,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -45,5 +46,26 @@ public class AddressBookEntry extends TestBase {
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
+
+  @Test
+  public void testContactCreation() {
+    Groups groups = app.db().groups();
+    File photo = new File("src/test/resources/stru.png");
+    ContactData newContact = new ContactData().withFirstName("Test first name").withMiddleName("Test middle name")
+            .withLastName("Test last name").withNickname("Test nickname").withTitle("Test title")
+            .withCompany("Test company").withAddress("Test address").withHomePhone("Test home").withMobilePhone("1234567890")
+            .withWorkPhone("Test work").withFax("Test fax").withFirstEmail("test1@test.com")
+            .withSecondEmail("test2@test.com").withThirdEmail("test3@test.com").withHomepage("www.homepage.com")
+            .withDayOfBirth("1").withMonthOfBirth("January").withYearOfBirth("1990").withAnniversaryDay("2")
+            .withAnniversaryMonth("February").withAnniversaryYear("2001").withPhoto(photo).inGroup(groups.iterator().next());
+    app.goTo().contactPage();
+    app.contact().create(newContact);
+
+
+
+  }
+
 }
+
+
 
