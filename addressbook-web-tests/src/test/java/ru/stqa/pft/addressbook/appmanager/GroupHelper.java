@@ -73,6 +73,15 @@ public class GroupHelper extends HelperBase {
     returnToGroupPage();
   }
 
+  public GroupData findGroupThatDoesNotIncludeContact(Groups groups, int contactSize){
+    for (GroupData group : groups) {
+      if (group.getContacts().size() < contactSize) {
+        return group;
+      }
+    }
+    return null;
+  }
+
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }

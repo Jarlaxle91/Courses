@@ -60,9 +60,6 @@ public class AddressBookEntry extends TestBase {
             .withAnniversaryMonth("February").withAnniversaryYear("2001").withPhoto(photo).inGroup(groups.iterator().next());
     app.goTo().contactPage();
     app.contact().create(newContact);
-
-
-
   }
 
 }

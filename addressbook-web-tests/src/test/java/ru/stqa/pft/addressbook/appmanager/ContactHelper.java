@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -146,6 +147,15 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("to_group")).click();
     wd.findElement(By.xpath("//select[@name='to_group']//option[text()='"+groupName+"']")).click();
     wd.findElement(By.name("add")).click();
+  }
+
+  public ContactData findContactThatCanBeAddedToSomeGroup (Contacts contacts, int groupSize){
+    for (ContactData contact : contacts) {
+      if (contact.getGroups().size() < groupSize) {
+        return contact;
+      }
+    }
+    return null;
   }
 
   public void deleteAttachedGroup(int id,String groupName) {
